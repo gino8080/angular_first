@@ -1,6 +1,13 @@
 Totale : {{cocktails.length}}
 <br/>
-<input type="text">
+<div class="input-group mb-3">
+    <label for="search"></label>
+    <input #searchTerm="ngModel" ngModel type="search" class="form-control" name="search" id="search" placeholder="Inserisci termine ricerca.. " (keyDown.enter)="searchCocktails(searchTerm.value)">
+    <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="searchCocktails(searchTerm.value)">Cerca</button>
+    </div>
+</div>
+
 <table class="table table-hover table-inverse table-responsive">
     <thead class="thead-inverse">
         <tr>
@@ -13,13 +20,9 @@ Totale : {{cocktails.length}}
     </thead>
     <tbody>
 
-        <tr *ngFor="let cocktail of cocktails">
-            <td scope="row">{{cocktail.id}}</td>
-            <td>{{cocktail.name | uppercase}} ({{cocktail.category}})</td>
-            <td><img [src]="cocktail.image" width="150" height="auto" /></td>
-            <td>{{cocktail.description | abstract:15 | uppercase}}</td>
-            <td>{{cocktail.date | date:"dd MMM yyyy - hh:mm" }}</td>
-        </tr>
+
+
+        <tr app-cocktail-item *ngFor="let curr_cocktail of cocktails" [cocktail]="curr_cocktail"></tr>
 
     </tbody>
 </table>

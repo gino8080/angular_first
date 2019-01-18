@@ -14,9 +14,12 @@ export class CocktailListComponent implements OnInit {
   constructor(private myService: CocktailsService) { }
 
   ngOnInit() {
-    this.myService.getCocktails('')
-      .then((cocktails: Cocktail[]) => {
+    this.searchCocktails();
+  }
 
+  searchCocktails(searchTerm: string = '') {
+    this.myService.getCocktails(searchTerm)
+      .then((cocktails: Cocktail[]) => {
         console.log('cocktails ricevuti!', cocktails);
         this.cocktails = cocktails;
       });

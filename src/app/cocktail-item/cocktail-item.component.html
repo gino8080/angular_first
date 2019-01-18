@@ -1,0 +1,6 @@
+<td scope="row">
+    {{cocktail.id}}</td>
+<td>{{cocktail.name | uppercase}} ({{cocktail.category}})</td>
+<td><img [src]="cocktail.image" width="150" height="auto" /></td>
+<td>{{cocktail.description | abstract:15 | uppercase}}</td>
+<td>{{cocktail.date | date:"dd MMM yyyy - hh:mm" }}</td>
