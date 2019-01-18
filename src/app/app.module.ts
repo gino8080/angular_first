@@ -19,6 +19,7 @@ import { CocktailListComponent } from './cocktail-list/cocktail-list.component';
 import { CocktailsService } from './cocktails.service';
 import { AbstractPipe } from './abstract.pipe';
 import { CocktailItemComponent } from './cocktail-item/cocktail-item.component';
+import { CocktailDetailComponent } from './cocktail-item/cocktail-detail/cocktail-detail.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CocktailItemComponent } from './cocktail-item/cocktail-item.component';
     LoginComponent,
     CocktailListComponent,
     AbstractPipe,
-    CocktailItemComponent
+    CocktailItemComponent,
+    CocktailDetailComponent
   ],
   imports: [
     BrowserModule,

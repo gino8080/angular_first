@@ -1,0 +1,25 @@
+<div class="container">
+    <!-- <pre>
+    cocktail-detail works! {{cocktail | json}}
+</pre> -->
+
+    <div class="loading" *ngIf="!cocktail">
+        <i class="fas fa-spinner fa-spin fa-4x"></i>
+    </div>
+    <div class="card" *ngIf="cocktail">
+        <div class="card-header">
+            {{cocktail.name}}
+        </div>
+        <img class="card-img-top" [src]="cocktail.image" alt="">
+        <div class="card-body">
+            <h4 class="card-title"></h4>
+            <p class="card-text">{{cocktail?.description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let ingredient of cocktail.ingredients">
+                {{ingredient.name}} {{ingredient.quantity}}
+            </li>
+
+        </ul>
+    </div>
+</div>

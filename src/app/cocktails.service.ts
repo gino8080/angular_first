@@ -43,7 +43,7 @@ export class CocktailsService {
   }
 
 
-  getCocktail(cocktailId: number) {
+  getCocktail(cocktailId: number | string) {
     const call = this.http.get(
       this.url + 'lookup.php',
       {
@@ -71,6 +71,7 @@ export class CocktailsService {
   parseCocktails(drinks: object[]): Cocktail[] {
 
     console.log('drinks', drinks);
+    if (!drinks) { return []; }
 
     const Cocktails: Cocktail[] = drinks.map((currentElement: any) => {
 
@@ -81,7 +82,8 @@ export class CocktailsService {
         glass: currentElement.strGlass,
         description: currentElement.strInstructions,
         image: currentElement.strDrinkThumb,
-        date: currentElement.dateModified
+        date: currentElement.dateModified,
+        ingredients: this.parseIngredients(currentElement)
       };
 
       console.log('currentElement', currentElement, 'newCocktail', newCocktail);
@@ -92,6 +94,23 @@ export class CocktailsService {
 
     console.log('Cocktails', Cocktails);
     return Cocktails;
+  }
+
+  parseIngredients(cocktail: any): Ingredient[] {
+
+    const Ingredients: Ingredient[] = [];
+
+    for (let index = 1; index < 16; index++) {
+      const newIngredient: Ingredient = {
+        name: cocktail['strIngredient' + index],
+        quantity: cocktail['strMeasure' + index]
+      };
+
+      if (newIngredient.name) {
+        Ingredients.push(newIngredient);
+      }
+    }
+    return Ingredients;
   }
 
 }

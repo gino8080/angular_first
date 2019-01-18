@@ -1,5 +1,6 @@
 <td scope="row">
-    {{cocktail.id}}</td>
+    <button type="button" class="btn btn-primary" [routerLink]=" '/cocktails/'+cocktail.id "> vai a {{cocktail.id}}</button>
+</td>
 <td>{{cocktail.name | uppercase}} ({{cocktail.category}})</td>
 <td><img [src]="cocktail.image" width="150" height="auto" /></td>
 <td>{{cocktail.description | abstract:15 | uppercase}}</td>
