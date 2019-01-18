@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Routes
 import { AppRoutingModule } from './app-routing.module';
+
 
 // Componenti
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { AbstractPipe } from './abstract.pipe';
 import { CocktailItemComponent } from './cocktail-item/cocktail-item.component';
 import { CocktailDetailComponent } from './cocktail-item/cocktail-detail/cocktail-detail.component';
 
+import { MatButtonModule, MatIconModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,10 @@ import { CocktailDetailComponent } from './cocktail-item/cocktail-detail/cocktai
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [CocktailsService],
   bootstrap: [AppComponent]
