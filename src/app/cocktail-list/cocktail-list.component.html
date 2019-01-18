@@ -1,25 +1,27 @@
 Totale : {{cocktails.length}}
 <br/>
-<pre>{{cocktails | json}}</pre>
-
+<input type="text">
 <table class="table table-hover table-inverse table-responsive">
     <thead class="thead-inverse">
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>id</th>
+            <th>name</th>
+            <th>image</th>
+            <th>short desc.</th>
+            <th>date</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td scope="row"></td>
-            <td></td>
-            <td></td>
+
+        <tr *ngFor="let cocktail of cocktails">
+            <td scope="row">{{cocktail.id}}</td>
+            <td>{{cocktail.name | uppercase}} ({{cocktail.category}})</td>
+            <td><img [src]="cocktail.image" width="150" height="auto" /></td>
+            <td>{{cocktail.description | abstract:15 | uppercase}}</td>
+            <td>{{cocktail.date | date:"dd MMM yyyy - hh:mm" }}</td>
         </tr>
-        <tr>
-            <td scope="row"></td>
-            <td></td>
-            <td></td>
-        </tr>
+
     </tbody>
 </table>
+
+<!-- <pre>{{cocktails | json}}</pre> -->
