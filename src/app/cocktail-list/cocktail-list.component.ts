@@ -25,4 +25,9 @@ export class CocktailListComponent implements OnInit {
       });
   }
 
+
+  onSelectedItem(currentCocktail: Cocktail) {
+    console.log('currentCocktail', currentCocktail);
+  }
+
 }

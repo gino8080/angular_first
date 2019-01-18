@@ -20,9 +20,7 @@ Totale : {{cocktails.length}}
     </thead>
     <tbody>
 
-
-
-        <tr app-cocktail-item *ngFor="let curr_cocktail of cocktails" [cocktail]="curr_cocktail"></tr>
+        <tr app-cocktail-item *ngFor="let curr_cocktail of cocktails" [cocktail]="curr_cocktail" (click)="onSelectedItem(curr_cocktail)" ></tr>
 
     </tbody>
 </table>

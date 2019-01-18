@@ -7,7 +7,8 @@ import { Cocktail, Ingredient } from './models/cocktail.model';
 })
 export class CocktailsService {
 
-  private url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php';
+  private url = 'https://www.thecocktaildb.com/api/json/v1/1/';
+
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +19,7 @@ export class CocktailsService {
     const params = { s: searchTerm };
 
     const call = this.http.get(
-      this.url,
+      this.url + 'search.php',
       {
         // params: datas //sono identiche le due righe
         params
@@ -41,6 +42,31 @@ export class CocktailsService {
 
   }
 
+
+  getCocktail(cocktailId: number) {
+    const call = this.http.get(
+      this.url + 'lookup.php',
+      {
+        params: {
+          i: `${cocktailId}`
+        }
+      }
+    );
+
+    return call.toPromise()
+      .then((response: { drinks: object[] }) => {
+        console.log('response', response);
+
+        const cocktailList: Cocktail[] = this.parseCocktails(response.drinks);
+        return cocktailList[0] || {};
+      })
+      .catch((error) => {
+        console.error('error', error);
+      })
+      .finally(() => {
+        console.log('finally!');
+      });
+  }
 
   parseCocktails(drinks: object[]): Cocktail[] {
 
