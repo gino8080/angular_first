@@ -1,0 +1,33 @@
+<div class="card" id="loginCard">
+    <div class="card-body">
+        <h5 class="card-title">
+            <app-titolo title="Login Form" subtitle="Insert data to proceed"></app-titolo>
+        </h5>
+        <div class="alert alert-danger" role="alert" *ngIf="!LoginForm.valid && LoginForm.dirty">
+            <strong>Correggi gli errori per continuare</strong>
+        </div>
+        <form #LoginForm="ngForm" (ngSubmit)="submitForm(LoginForm)">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address </label>
+                <input #email="ngModel" ngModel type="email" class="form-control" [ngClass]="{'error': email.dirty && !email.valid}" id="exampleInputEmail1" placeholder="Enter email" name="email" required> </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input #password="ngModel" ngModel type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="accepted" value="ok">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <hr/>
+            <div>
+                Email : {{email.value}} <br/> Password : {{password.value}}
+            </div>
+            <hr/>
+            <br/>
+            <div class="progress" *ngIf="isLoading">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 100%;">Loading...</div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!LoginForm.valid || isLoading">Submit</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+@import "../colors.scss";
+@import "../functions.scss";
+header {
+    border: 1px solid $color;
+    @include roundedBorder(10px);
+    h1 {
+        color: $textColorLight;
+    }
+}
