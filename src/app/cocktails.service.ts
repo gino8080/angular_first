@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Cocktail, Ingredient } from './models/cocktail.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +25,12 @@ export class CocktailsService {
       }
     );
 
-    call.toPromise()
-      .then((response) => {
+    return call.toPromise()
+      .then((response: { drinks: object[] }) => {
         console.log('response', response);
+
+        const cocktailList: Cocktail[] = this.parseCocktails(response.drinks);
+        return cocktailList;
       })
       .catch((error) => {
         console.error('error', error);
@@ -35,6 +39,33 @@ export class CocktailsService {
         console.log('finally!');
       });
 
+  }
+
+
+  parseCocktails(drinks: object[]): Cocktail[] {
+
+    console.log('drinks', drinks);
+
+    const Cocktails: Cocktail[] = drinks.map((currentElement: any) => {
+
+      const newCocktail: Cocktail = {
+        id: currentElement.idDrink,
+        name: currentElement.strDrink,
+        category: currentElement.strCategory,
+        glass: currentElement.strGlass,
+        description: currentElement.strInstructions,
+        image: currentElement.strDrinkThumb,
+        date: currentElement.dateModified
+      };
+
+      console.log('currentElement', currentElement, 'newCocktail', newCocktail);
+
+      return newCocktail;
+
+    }); // end map
+
+    console.log('Cocktails', Cocktails);
+    return Cocktails;
   }
 
 }

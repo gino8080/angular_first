@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CocktailsService } from '../cocktails.service';
+import { Cocktail } from '../models/cocktail.model';
 
 @Component({
   selector: 'app-cocktail-list',
@@ -8,10 +9,17 @@ import { CocktailsService } from '../cocktails.service';
 })
 export class CocktailListComponent implements OnInit {
 
+  cocktails: Cocktail[] = [];
+
   constructor(private myService: CocktailsService) { }
 
   ngOnInit() {
-    this.myService.getCocktails('bellini');
+    this.myService.getCocktails('bellini')
+      .then((cocktails: Cocktail[]) => {
+
+        console.log('cocktails ricevuti!', cocktails);
+        this.cocktails = cocktails;
+      });
   }
 
 }
