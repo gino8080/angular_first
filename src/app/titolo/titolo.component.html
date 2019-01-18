@@ -1,0 +1,7 @@
+<h1 [ngClass]=" { 'smallTitle' : subtitle } " >
+    {{title}}
+</h1>
+<div *ngIf="hasSubtitle()">
+    <hr/>
+    <span class="text-muted" [hidden]=" subtitle==='' ">{{subtitle}}</span>
+</div>
